@@ -44,18 +44,41 @@ function xmlToJson(xml) {
 		}
 	}
 	return obj;
+
 };
 
-
+var result = null;
 
 	$.ajax({
 	  url: url,
 	  type: 'GET',
 	  success: function(data){
-	  	var result = xmlToJson(data)
-	    console.log(result);
-		  }
+	  	result = xmlToJson(data);
+		console.log(result);
+		$('#show').html(result['channel']['description']['#text']);
+		$('#title').html(result['channel']['item']['title']['#text']);
+		$('#time').html(result['channel']['item']['validTime']['#text'])
+		$('#source').html(result['channel']['source']['#text'])
+	  	for (var xml in result['channel']['item']['weatherForecast']['area']){
+			xml.forEach()
+			//xml.forEach(console.log(index));
+			//$('#loc').html(xml[]);
+			}
+
+		}
 	});
+
+	for (var xml in result){
+		$('#show').html(result(xml));
+		console.log(result[xml]);
+	}
+
+	for (var i = 0; i<10; i++){
+		$('#show').html(result);
+		console.log(result['channel']);
+	}
+
+$('#show').html("xml");	
 
 });
 
