@@ -15,12 +15,29 @@
 <body>
 	<div class="container">
 		<div class="jumbotron">
-			<h1>Weather Forcast Dataset</h1>
+			<h1>Weather Forcast</h1>
 			<p> Gets weather Forecast for major Singapore Cities, this forcast is valid for two hours</p>
 		</div>
-		<h3>Dataset</h3><div id='title'></div><br/>
-		<h3>Source</h3><div id='source'></div><br/>
-		<h3>Valid for</h3><div id='time'></div><br/>
+		<div class="row">
+			<div class="col-sm-4"><h3>Dataset</h3><div id='title'></div></div>
+			<div class="col-sm-4"><h3>Source</h3><div id='source'></div></div>
+			<div class="col-sm-4"><h3>Valid for</h3><div id='time'></div></div>
+		</div>
+		<br/>
+
+		<div class="row">
+			<div class="col-sm-6"><h3>Select your City</h3></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">		
+				<div class="dropdown">
+					<select id='cities' class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+						<span class="caret"></span>
+					</select>
+			</div>
+		</div>
+
+	
 		<table class="table table-hover">
 			<thead>
 				<tr>

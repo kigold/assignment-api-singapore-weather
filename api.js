@@ -1,10 +1,10 @@
 $(document)
 	.ready(function() {
 
-	var key = '781CF461BB6606ADEA01E0CAF8B35274746BD40916748CE0';
+	var key = '&keyref=' + '781CF461BB6606ADEA01E0CAF8B35274746BD40916748CE0';
 	var dataset = '2hr_nowcast'
-
-	var url = 'http://www.nea.gov.sg/api/WebAPI?dataset=' + dataset + '&keyref=' + key;
+	var baseurl = 'http://www.nea.gov.sg/api/WebAPI?dataset='
+	var url = baseurl + dataset  + key;
 
 
 	// Changes XML to JSON
@@ -99,6 +99,16 @@ $(document)
 			$('#time').html(result['channel']['item']['validTime']['#text']);
 			$('#source').html(result['channel']['source']['#text']);
 			var length = result['channel']['item']['weatherForecast']['area'].length;
+			//Create List of cites
+			var cities = [];
+			for(var i=0; i<length; i++){
+				cities.push(result['channel']['item']['weatherForecast']['area'][i]['@attributes']['name']);
+				$('#cities').append('<option value='+ cities[i] + '>' + cities[i] + '</option>');
+			}
+
+
+
+			//List All cites and Forcast 
 			for(var i=0; i<length; i++){
 				//$('#loc').append(result['channel']['item']['weatherForecast']['area'][i]['@attributes']['name'] + '<br/>');
 				//$('#fc').append(result['channel']['item']['weatherForecast']['area'][i]['@attributes']['forecast']+ '<br/>');
@@ -110,7 +120,32 @@ $(document)
 		}
 
 	});
+	//weatherApi takes url, makes th API and returns the data
+	var url = baseurl + dataset  + key;
+	function WeatherApi(baseurl, dataset, key) {
+		this.data = null;
+		this.baseurl = baseurl;
+		this.key = key;
+		this.dataset = dataset
+		this.callApi = function(dataset) {
+			if (dataset) {
+				url = this.baseurl + dataset + this.key;
+			}
+			else {
+				url = this.baseurl + this.dataset + this.key;
+			}
+			$.get(url, function(data){
+				this.data = data
+				console.log('weatherApi class Ran successfully');
+				console.log(data);
+			});
+		}
 
+
+	}
+
+	var weatherApi = new WeatherApi(baseurl, dataset, key);
+	weatherApi.callApi('24hrs_forecast');
 
 
 
@@ -119,7 +154,6 @@ $(document)
 
 
 	///////////
-	console.log(result)	
-
+	
 });
 
