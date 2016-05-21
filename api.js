@@ -54,16 +54,24 @@ var result = null;
 	  type: 'GET',
 	  success: function(data){
 	  	result = xmlToJson(data);
-		console.log(result);
+		//console.log(result);
 		$('#show').html(result['channel']['description']['#text']);
 		$('#title').html(result['channel']['item']['title']['#text']);
-		$('#time').html(result['channel']['item']['validTime']['#text'])
-		$('#source').html(result['channel']['source']['#text'])
-	  	for (var xml in result['channel']['item']['weatherForecast']['area']){
-			xml.forEach()
-			//xml.forEach(console.log(index));
-			//$('#loc').html(xml[]);
-			}
+		$('#time').html(result['channel']['item']['validTime']['#text']);
+		$('#source').html(result['channel']['source']['#text']);
+		var length = result['channel']['item']['weatherForecast']['area'].length;
+		for(var i=0; i<length; i++){
+
+			$('#loc').append(result['channel']['item']['weatherForecast']['area'][i]['@attributes']['name'] + '<br/>');
+			$('#fc').append(result['channel']['item']['weatherForecast']['area'][i]['@attributes']['forecast']+ '<br/>');
+
+		}
+
+			//for (var i=0; i < xml.length; i++){
+				//console.log(xml.length);
+				//console.log(xml[i]['@attributes']['forecast']);
+				//}
+			
 
 		}
 	});
