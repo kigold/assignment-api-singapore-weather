@@ -127,6 +127,7 @@ $(document)
 		this.baseurl = baseurl;
 		this.key = key;
 		this.dataset = dataset
+		//api call
 		this.callApi = function(dataset) {
 			if (dataset) {
 				url = this.baseurl + dataset + this.key;
@@ -135,10 +136,24 @@ $(document)
 				url = this.baseurl + this.dataset + this.key;
 			}
 			$.get(url, function(data){
-				this.data = data
+				this.data = xmlToJson(data);
 				console.log('weatherApi class Ran successfully');
 				console.log(data);
 			});
+		}
+		//populate table
+		this.populate = function(dataset,city){
+			this.callApi(dataset);
+			if (dataset='2hr_nowcast'){
+				var location = this.data['channel']['item']['weatherForecast']['area'][i]['@attributes']['name'];
+				var forecast = this.data['channel']['item']['weatherForecast']['area'][i]['@attributes']['forecast'];
+				$('tbody').html('<tr><td>' + location +  '</td><td>' + forecast_interpretation[forecast] + '</td></tr>');
+
+			}
+			else {
+
+			}
+
 		}
 
 
