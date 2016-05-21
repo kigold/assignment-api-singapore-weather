@@ -48,6 +48,44 @@ $(document)
 	};
 	////////////
 
+
+	///Weather Forecast Abbreviation Interpretation List
+	var forecast_interpretation = {
+		'BR' : 'Mist',
+		'CL' : 'Cloudy',
+		'DR' : 'Drizzle',
+		'FA' : 'Fair (Day)',
+		'FG' : 'Fog',
+		'FN' : 'Fair (Night)',
+		'FW' : 'Fair & Warm',
+		'HG' : 'Heavy Thundery Showers with Gusty Winds',
+		'HR' : 'Heavy Rain',
+		'HS' : 'Heavy Showers',
+		'HT' : 'Heavy Thundery Shower',
+		'HZ' : 'Hazy',
+		'LH' : 'Slightly Hazy',
+		'LR' : 'Light Rain',
+		'LS' : 'Light Showers',
+		'OC' : 'Overcast',
+		'PC' : 'Partly Cloudy(Day)',
+		'PN' : 'Partly Cloudy(Night)',
+		'PS' : 'Passing Showers',
+		'RA' : 'Moderate Rain',
+		'SH' : 'Showers',
+		'SK' : 'Strong Winds, Showers',
+		'SN' : 'Snow',
+		'SR' : 'Strong Winds, Rain',
+		'SS' : 'Snow Showers',
+		'SU' : 'Sunny',
+		'SW' : 'Strong Winds',
+		'TL' : 'Thundery Showers',
+		'WC' : 'Windy, Cloudy',
+		'WD' : 'Windy',
+		'WF' :'Windy, Fair',
+		'WR' : 'Windy, Rain',
+		'WS' : 'Windy, Showers',
+	}
+
 	$.ajax({
 	  url: url,
 	  type: 'GET',
@@ -66,12 +104,14 @@ $(document)
 				//$('#fc').append(result['channel']['item']['weatherForecast']['area'][i]['@attributes']['forecast']+ '<br/>');
 				var location = result['channel']['item']['weatherForecast']['area'][i]['@attributes']['name'];
 				var forecast = result['channel']['item']['weatherForecast']['area'][i]['@attributes']['forecast'];
-				$('tbody').append('<tr><td>' + location +  '</td><td>' + forecast + '</td></tr>')
+				$('tbody').append('<tr><td>' + location +  '</td><td>' + forecast_interpretation[forecast] + '</td></tr>')
 
 			}
 		}
 
 	});
+
+
 
 
 
