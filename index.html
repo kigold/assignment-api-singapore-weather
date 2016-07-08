@@ -5,10 +5,10 @@
 	  <meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
 	 <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bootstrap.css">
 	<script src="jquery.js"></script>
 	<!-- Latest compiled JavaScript -->
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="bootstrap.js"></script>
 
 	<script src="api.js"></script>
 </head>
@@ -36,8 +36,8 @@
 				</div>
 			</div>
 			<div class="col-sm-6">		
-				<div class="dropdown">
-					<select id='time' class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+				<div class="dropdown" id="push">
+					<select id='data_set' class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
 						<span class="caret"></span>
 						<option value="2hr_nowcast">2 Hours</option>
 						<option value="24hrs_forecast">24 Hours</option>
@@ -58,7 +58,7 @@
 					</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id='table_content'>
 
 			</tbody>
 		</table>
